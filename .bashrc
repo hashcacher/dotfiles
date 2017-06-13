@@ -129,3 +129,4 @@ fi
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64"
 . /home/greg/torch/install/bin/torch-activate
 TERMINAL=terminator
+EDITOR=vim

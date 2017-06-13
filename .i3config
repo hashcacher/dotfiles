@@ -482,7 +482,6 @@ bar {
 	# status_command ~/.config/i3/start-conky-i3statusbar.sh
 
 	
-	height 25
     workspace_buttons yes
     
     colors {

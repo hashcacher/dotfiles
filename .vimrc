@@ -4,7 +4,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 
 " Normal mode
-imap jj <Esc>
+imap jk <Esc>
 
 " Stolen from Alex Luecke
 nmap B ^
@@ -43,18 +43,37 @@ autocmd InsertLeave * :set relativenumber
 set path+=**
 set wildmenu
 
+colorscheme minimalist
+
 " Clipboard
 set clipboard=unnamedplus
 
-" Python
+" HTML
+runtime macros/matchit.vim
+
+" ---- Plug
 call plug#begin('~/.vim/plugged')
-Plug 'davidhalter/jedi-vim'
+
+" Python
+"Plug 'davidhalter/jedi-vim'
+
+" Ayu color scheme
+" Plug 'ayu-theme/ayu-vim'
+
 Plug 'tpope/vim-surround'
 call plug#end()
+" ----- Plug
 
-let g:jedi#popup_on_dot = 0
-let g:jedi#use_splits_not_buffers = 'bottom'
-let g:jedi#show_call_signatures = 0
+" Ayu color scheme
+" set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+colorscheme cleanroom
+
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#use_splits_not_buffers = 'bottom'
+"let g:jedi#show_call_signatures = 0
 
 " Persistent undo
 let vimDir = '$HOME/.vim'
