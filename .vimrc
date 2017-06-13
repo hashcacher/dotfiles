@@ -2,6 +2,7 @@
 let mapleader = ","
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader><leader> :find 
 
 " Normal mode
 imap jk <Esc>
@@ -13,7 +14,7 @@ nnoremap <S-Tab> <<_
 noremap <Tab> >>
 
 " Colors
-colorscheme gotham
+"colorscheme gotham
 
 " Utility
 nnoremap <space> i<space><Esc>
@@ -69,7 +70,7 @@ call plug#end()
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
 "let ayucolor="dark"   " for dark version of theme
-colorscheme cleanroom
+"colorscheme cleanroom
 
 "let g:jedi#popup_on_dot = 0
 "let g:jedi#use_splits_not_buffers = 'bottom'
