@@ -1,10 +1,8 @@
-alias aptsearch='apt-cache search'
-alias aptinstall='sudo apt-get install'
 alias pygrep='find . -name "*.py" -print0 | xargs -0 grep'
 alias csgrep='find . -name "*.cs" -print0 | xargs -0 grep'
 alias cdtensor='cd /usr/local/lib/python2.7/dist-packages/tensorflow/'
 alias cdgb='cd ~/code/GregBound'
-alias cdpiper='cd ~/code/piper'
+alias cdpiper='cd ~/code/piper3'
 alias cdai='cd ~/code/fast-ai-course'
 
 function imagenet {
