@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/greg/code/piper3/game/minetest/mods/testmod'
+let g:netrw_dirhist_2='/home/greg/code/piper3/game/levels/minetestWorlds/Water Power Flow - Level 7'
+let g:netrw_dirhist_3='/home/greg/code/piper3'
+let g:netrw_dirhist_4='/home/greg/code/dotfiles'
