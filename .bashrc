@@ -126,7 +126,8 @@ fi
 [ -r /home/greg/.byobu/prompt ] && . /home/greg/.byobu/prompt   #byobu-prompt#
 
 
-LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64"
-. /home/greg/torch/install/bin/torch-activate
+#LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64"
+#. /home/greg/torch/install/bin/torch-activate
 TERMINAL=terminator
+GIT_EDITOR=vim
 EDITOR=vim

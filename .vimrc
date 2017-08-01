@@ -62,8 +62,16 @@ call plug#begin('~/.vim/plugged')
 " Plug 'ayu-theme/ayu-vim'
 
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
+Plug 'Valloric/YouCompleteMe'
+Plug '~/.vim/plugged/omnisharp-vim'
 call plug#end()
 " ----- Plug
+"
+
+" YCM IDE subcommands
+nnoremap <leader>g :YcmCompleter GoTo<CR> 
+nnoremap <leader>r :YcmCompleter GoToReferences<CR> 
 
 " Ayu color scheme
 " set termguicolors     " enable true colors support

@@ -180,7 +180,7 @@ bindsym $mod+shift+d exec j4-dmenu-desktop --dmenu="dmenu -fn 'DroidSansMono:bol
 
 ## DUAL SCREEN
 
-exec xrandr --output HDMI-1-1 --right-of eDP-1-1 --auto
+exec xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto
 
 # my current setup
 set $firstMonitor eDP-1-1
@@ -363,7 +363,7 @@ for_window [class="Galculator"] floating enable
 for_window [class="Usb-creator-gtk"] floating enable
 for_window [class="MintUpdate.py"] floating enable
 #for_window [class="Bleachbit"] floating enable
-for_window [title="^MCEdit.*"] floating enable
+#for_window [title="^MCEdit.*"] floating enable
 for_window [class="Hexchat"] floating disable
 for_window [class="start.py"] floating enable
 
@@ -381,8 +381,6 @@ bindsym mod1+t exec variety -t
 bindsym mod1+n exec variety -n
 # previous wallpaper
 bindsym mod1+p exec variety -p
-# favorite wallpaper
-bindsym mod1+f exec variety -f
 
 
 ##  MODE_SYSTEM
@@ -431,10 +429,6 @@ bindsym $mod+b bar mode toggle
 hide_edge_borders both
 #bindsym $mod+shift+b exec i3-msg border toggle
 
-#changing border style
-bindsym $mod+t border normal
-bindsym $mod+y border 1pixel
-bindsym $mod+u border none
 
 
 new_window normal 0px
@@ -465,7 +459,7 @@ bar {
 	# type status_command i3status without the config file and 
     # you will get the standard i3status bar
     # this is the standard statusbar with my personal settings
-	 status_command i3status -c ~/.config/i3/i3status.conf
+	status_command i3status
 
     # https://github.com/vivien/i3blocks
     # another way to provide text in the statusbar
@@ -645,4 +639,4 @@ mode "$mode_gaps_outer" {
 #if you want transparency on non-focused windows
 exec_always compton --config ~/.config/i3/compton.conf
 
-
+exec_always redshift -l 37.781345:-122.497668 -t 4000:3000
