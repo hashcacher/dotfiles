@@ -179,12 +179,11 @@ bindsym $mod+shift+d exec j4-dmenu-desktop --dmenu="dmenu -fn 'DroidSansMono:bol
 
 
 ## DUAL SCREEN
-
-exec xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto
+exec xrandr --output HDMI-1-1 --primary --left-of eDP-1-1 --auto
 
 # my current setup
-set $firstMonitor eDP-1-1
-set $secondMonitor HDMI-1-1
+set $secondMonitor eDP-1-1
+set $firstMonitor HDMI-1-1
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
@@ -366,6 +365,7 @@ for_window [class="MintUpdate.py"] floating enable
 #for_window [title="^MCEdit.*"] floating enable
 for_window [class="Hexchat"] floating disable
 for_window [class="start.py"] floating enable
+for_window [class="mcedit"] floating enable
 
 #Popups during fullscreen mode
 popup_during_fullscreen smart
