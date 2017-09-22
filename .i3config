@@ -366,6 +366,7 @@ for_window [class="MintUpdate.py"] floating enable
 for_window [class="Hexchat"] floating disable
 for_window [class="start.py"] floating enable
 for_window [class="mcedit"] floating enable
+for_window [title="^mono.*"] kill
 
 #Popups during fullscreen mode
 popup_during_fullscreen smart

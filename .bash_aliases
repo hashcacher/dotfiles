@@ -6,6 +6,8 @@ alias cdpiper='cd ~/code/piper3'
 alias cdai='cd ~/code/fast-ai-course'
 alias cdtd='cd ~/code/td/Assets'
 alias cdcg='cd ~/code/ChessGo_n_Ads/ChessGo/Assets'
+alias cdcs='cd ~/code/ChessGo_n_Ads/ChessGo\ Server/Card\ Game\ Server'
+
 alias cdworlds='cd ~/code/piper3/game/minetest/worlds'
 alias gitgraph='git log --graph --all --decorate'
 

@@ -72,6 +72,7 @@ call plug#end()
 " YCM IDE subcommands
 nnoremap <leader>g :YcmCompleter GoTo<CR> 
 nnoremap <leader>r :YcmCompleter GoToReferences<CR> 
+highlight YcmWarningSection guibg=#0fa000
 
 " Ayu color scheme
 " set termguicolors     " enable true colors support
