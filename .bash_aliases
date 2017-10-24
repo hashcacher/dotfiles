@@ -4,12 +4,14 @@ alias cdtensor='cd /usr/local/lib/python2.7/dist-packages/tensorflow/'
 alias cdgb='cd ~/code/GregBound'
 alias cdpiper='cd ~/code/piper3'
 alias cdmt='cd ~/code/minetest'
+alias cdmc='cd ~/code/minetest/games/mineclone2'
 alias cdai='cd ~/code/fast-ai-course'
 alias cdtd='cd ~/code/td/Assets'
 alias cdcg='cd ~/code/ChessGo_n_Ads/ChessGo/Assets'
 alias cdcs='cd ~/code/ChessGo_n_Ads/ChessGo\ Server/Card\ Game\ Server'
+alias cdrn='cd ~/code/native-starter-kit'
 
-alias cdworlds='cd ~/code/minetest/worlds'
+alias cdworlds='cd ~/code/minetest/worlds/marsWorld-Latest'
 alias cdmods='cd ~/code/piper-mods'
 alias trig="vim ~/code/minetest/worlds/marsWorld-Latest/triggers.json"
 
@@ -39,4 +41,21 @@ function imagenet {
 
 function rmLastNMod {
     ls -pt | grep -v / | head -$1 | xargs -d '\n' rm -i -f --
+}
+
+function rebaseAll {
+	cd ~/code/piper-mods
+	git stash
+	git pull --rebase
+	git stash pop
+
+	cd ~/code/minetest
+	git stash
+	git pull --rebase
+	git stash pop
+
+	cd ~/code/minetest/worlds/marsWorld-Latest
+	git stash
+	git pull --rebase
+	git stash pop
 }
