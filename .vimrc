@@ -3,7 +3,9 @@ let mapleader = ","
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>p ywoprint("<Esc>pi is: " .. dump(<Esc>pi))<Esc> " Lua print
+nnoremap <leader>d o<Esc>idbg = dofile("/home/greg/code/piper-mods/piper/dev/debugger.lua")<cr>dbg()<Esc>
 nnoremap <leader><leader> :find 
+nnoremap <leader>f :Ack 
 
 " Normal mode
 imap jk <Esc>
@@ -27,7 +29,7 @@ nmap <C-Enter> i<CR><Esc>
 
 " Filename
 set laststatus=2
-set statusline=%f "tail of the filename
+set statusline=%f%{fugitive#statusline()} "tail of the filename
 
 " Use Spaces
 "set tabstop=4 
@@ -56,7 +58,7 @@ set clipboard=unnamedplus
 runtime macros/matchit.vim
 
 " Python
-nmap <leader>d oimport pdb; pdb.set_trace()<Esc>
+"nmap <leader>d oimport pdb; pdb.set_trace()<Esc>
 
 " ---- Plug
 call plug#begin('~/.vim/plugged')
@@ -66,12 +68,22 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'Valloric/YouCompleteMe'
 Plug '~/.vim/plugged/omnisharp-vim'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-fugitive'
+
 "Plug 'xolox/vim-lua-ftplugin'
 "Plug 'xolox/vim-misc'
 call plug#end()
 " ----- Plug
 "
-"
+" Ack.vim
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+
+
 set runtimepath^=~/.vim/plugged/a.vim
 
 " YCM IDE subcommands
