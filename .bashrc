@@ -128,6 +128,13 @@ fi
 
 #LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64"
 #. /home/greg/torch/install/bin/torch-activate
-TERMINAL=mate-terminal
-GIT_EDITOR=vim
-EDITOR=vim
+export TERMINAL=mate-terminal
+export GIT_EDITOR=vim
+export EDITOR=vim
+export JAVA_HOME=/opt/jdk/jdk1.8.0_144
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:/opt/jdk/jdk1.8.0_144/bin
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+eval $(thefuck --alias)
+ssh-add ~/.ssh/id_rsa
