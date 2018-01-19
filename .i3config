@@ -161,8 +161,8 @@ font pango:Noto Mono Regular 13
 
 ##  TERMINAL
 
-bindsym $mod+Return exec mate-terminal
-#bindsym $mod+Return exec terminator;focus
+#bindsym $mod+Return exec mate-terminal
+bindsym $mod+Return exec terminator;focus
 #bindsym $mod+Return exec gnome-terminal;focus
 
 
@@ -182,8 +182,8 @@ bindsym $mod+shift+d exec j4-dmenu-desktop --dmenu="dmenu -fn 'DroidSansMono:bol
 exec xrandr --output eDP-1-1 --mode 1920x1080 --right-of HDMI-1-1 --primary --auto
 
 # my current setup
-set $secondMonitor eDP-1-1
-set $firstMonitor HDMI-1-1
+set $secondMonitor eDP-1
+set $firstMonitor HDMI-1
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
@@ -369,7 +369,7 @@ for_window [class="start.py"] floating enable
 for_window [class="mcedit"] floating enable
 
 for_window [title="^mono.*"] kill
-#for_window [class="Minetest"] floating enable 
+for_window [class="Minetest"] floating enable 
 floating_minimum_size 848 x 480
 floating_maximum_size 848 x 848
 
@@ -419,8 +419,8 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessDown exec .bin/brightness - 50
-bindsym XF86MonBrightnessUp exec .bin/brightness + 50
+bindsym XF86MonBrightnessDown exec /usr/bin/brightness - 50
+bindsym XF86MonBrightnessUp exec /usr/bin/brightness + 50
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 #bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 #

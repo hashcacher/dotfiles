@@ -128,7 +128,8 @@ fi
 
 #LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64"
 #. /home/greg/torch/install/bin/torch-activate
-export TERMINAL=mate-terminal
+export TERMINAL=terminator
+export TERM=xterm-256color
 export GIT_EDITOR=vim
 export EDITOR=vim
 export JAVA_HOME=/opt/jdk/jdk1.8.0_144

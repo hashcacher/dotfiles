@@ -1,3 +1,4 @@
+alias fn='find . -name ' 
 alias pygrep='find . -name "*.py" -print0 | xargs -0 grep'
 alias csgrep='find . -name "*.cs" -print0 | xargs -0 grep'
 alias cdtensor='cd /usr/local/lib/python2.7/dist-packages/tensorflow/'
@@ -10,6 +11,7 @@ alias cdtd='cd ~/code/td/Assets'
 alias cdcg='cd ~/code/ChessGo_n_Ads/ChessGo/Assets'
 alias cdcs='cd ~/code/ChessGo_n_Ads/ChessGo\ Server/Card\ Game\ Server'
 alias cdrn='cd ~/code/native-starter-kit'
+alias cd3d='cd ~/code/3dg'
 
 alias cdworlds='cd ~/code/minetest/worlds/marsWorld-Latest'
 alias cdmods='cd ~/code/piper-mods'

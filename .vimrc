@@ -2,6 +2,7 @@
 let mapleader = ","
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>e :e<cr>
 nnoremap <leader>p ywoprint("<Esc>pi is: " .. dump(<Esc>pi))<Esc> " Lua print
 nnoremap <leader>d o<Esc>idbg = dofile("/home/greg/code/piper-mods/piper/dev/debugger.lua")<cr>dbg()<Esc>
 nnoremap <leader><leader> :find 
@@ -16,8 +17,14 @@ nmap E g_
 nnoremap <S-Tab> <<_
 noremap <Tab> >>
 
+
 " Colors
 "colorscheme gotham
+"set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme cleanroom
 
 " Utility
 nnoremap <space> i<space><Esc>
@@ -26,6 +33,10 @@ nnoremap <space> i<space><Esc>
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 nmap <C-Enter> i<CR><Esc>
+
+
+" Per project vimrc
+set exrc
 
 " Filename
 set laststatus=2
@@ -50,6 +61,7 @@ autocmd InsertLeave * :set relativenumber
 set path+=**
 set wildmenu
 
+set nowrap
 
 " Clipboard
 set clipboard=unnamedplus
@@ -64,6 +76,10 @@ runtime macros/matchit.vim
 call plug#begin('~/.vim/plugged')
 " Ayu color scheme
 " Plug 'ayu-theme/ayu-vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'flazz/vim-colorschemes'
+"Plug 'nightsense/simplifysimplify'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'Valloric/YouCompleteMe'
@@ -91,13 +107,6 @@ nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>r :YcmCompleter GoToReferences<CR> 
 highlight YcmWarningSection guibg=#0fa000
 let g:ycm_python_binary_path = '/usr/bin/python'
-
-" Ayu color scheme
-" set termguicolors     " enable true colors support
-"let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
-"colorscheme cleanroom
 
 "let g:jedi#popup_on_dot = 0
 "let g:jedi#use_splits_not_buffers = 'bottom'
@@ -168,3 +177,13 @@ echo value
 silent exe "norm! oprint(\"".value." is: \" .. ".value.")\<esc>"
 exe 'let @'.reg_n.' = ""'
 endfun
+
+colorscheme beekai
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+
+set secure
+
+
