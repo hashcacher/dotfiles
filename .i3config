@@ -41,6 +41,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 
+bindsym $mod+m move workspace to output left
+
 ##  SCRATCHPAD
 
 # move the currently focused window to the scratchpad
@@ -483,29 +485,19 @@ bar {
 	# status_command ~/.config/i3/start-conky-i3statusbar.sh
 
 	
-    workspace_buttons yes
+    #workspace_buttons yes
     
-    colors {
-            background #2F2F2F
-            statusline #eeeeee
-            separator #666666
-            #                     border  backgr. text
-            focused_workspace     #a9a9a9 #222222 #a9a9a9
-            active_workspace      #a9a9a9 #222222 #a9a9a9
-            inactive_workspace    #a9a9a9 #5f676a #a9a9a9
-            urgent_workspace      #4A4A4A #4A4A4A #a9a9a9
-            }
-    }
+}
 
 # DarkGrey background with white text - not focus grey background - black text
 # Windows decoration colors
 # class                 border  backgr. text    indicator
-client.placeholder      #242424 #242424 #242424
-client.background       #242424 #242424 #242424
-client.focused          #4A4A4A #4A4A4A #e5e5e5 #4A4A4A
-client.unfocused        #222222 #222222 #aaaaaa #222222
-client.focused_inactive #222222 #222222 #a9a9a9 #222222
-client.urgent           #4A4A4A #4A4A4A #f7f7f7 #4A4A4A
+#client.placeholder      #242424 #242424 #242424
+#client.background       #242424 #242424 #242424
+#client.focused          #4A4A4A #4A4A4A #e5e5e5 #4A4A4A
+#client.unfocused        #222222 #222222 #aaaaaa #222222
+#client.focused_inactive #222222 #222222 #a9a9a9 #222222
+#client.urgent           #4A4A4A #4A4A4A #f7f7f7 #4A4A4A
 
 
 #################################################################
@@ -643,6 +635,6 @@ mode "$mode_gaps_outer" {
 ###################       C O M P T O N      ##############################
 ###########################################################################
 #if you want transparency on non-focused windows
-exec_always compton --config ~/.config/i3/compton.conf
+#exec_always compton --config ~/.config/i3/compton.conf
 
 exec_always redshift -l 37.781345:-122.497668 -t 4000:3000

@@ -37,6 +37,8 @@ alias gst='git stash'
 alias gstl='git stash list'
 alias gstp='git stash pop'
 
+alias sshssh='ssh root@52.53.179.223'
+
 function imagenet {
     python /usr/local/lib/python2.7/dist-packages/tensorflow/models/image/imagenet/classify_image.py --image_file=$1
 }

@@ -129,7 +129,7 @@ fi
 #LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64"
 #. /home/greg/torch/install/bin/torch-activate
 export TERMINAL=terminator
-export TERM=xterm-256color
+#export TERM=xterm-256color
 export GIT_EDITOR=vim
 export EDITOR=vim
 export JAVA_HOME=/opt/jdk/jdk1.8.0_144
@@ -139,3 +139,11 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 eval $(thefuck --alias)
 ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/AWS-wicked-laptop-5-7-18.pem
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+~/.vim/plugged/gruvbox/gruvbox_256palette.sh
+
