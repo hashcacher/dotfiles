@@ -1,14 +1,15 @@
 let mapleader = ","
 
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q<CR>
+nnoremap <leader>q :bd<CR>
 nnoremap <leader>e :e<CR>
 nnoremap <leader>v :e $MYVIMRC<CR>:source %<CR>
 nnoremap <leader>p ywoprint("<Esc>pi is: " .. dump(<Esc>pi))<Esc> " Lua print
 nnoremap <leader>d Oimport pdb; pdb.set_trace()<Esc>
 "LUAnnoremap <leader>d o<Esc>idbg = dofile("/home/greg/code/piper-mods/piper/dev/debugger.lua")<CR>dbg()<Esc>
 nnoremap <leader><leader> :find
-nnoremap <leader>f :Ack
+nnoremap <leader>f :Ack 
 
 " vim-test
 "nnoremap <leader>b :TestLast<CR>
@@ -17,12 +18,22 @@ nnoremap <leader>f :Ack
 "nnoremap [q :Pytest previous<CR>
 "nnoremap ]q :Pytest next<CR>
 " make
-nnoremap <leader>b :AsyncRun python manage.py runserver<CR>
-nnoremap <leader>s :AsyncStop<CR>
+"nnoremap <leader>n :AsyncRun -post :AsyncRun "sshpass -p piper ssh pi@10.1.10.202 sudo killall python<CR>" sshpass -p piper rsync -avz --exclude videos --exclude .git --exclude '*.dat' ~/code/piper/ pi@10.1.10.202:~/piper/<CR>
+nnoremap <leader>n :AsyncRun sshpass -p piper rsync -avz --exclude .git --exclude '*.dat' ~/code/piperbak/ pi@10.1.10.202:~/piper/<CR>
 
+nnoremap <leader>b :AsyncRun sshpass -p piper ssh -tt pi@10.1.10.202 'export TERM=xterm
+\ sudo killall python;
+\ tmux send-keys -t0 "sudo python start.py" Enter;
+\ tmux a -t0'<CR>
+
+"nnoremap <leader>b :AsyncRun sshpass -p piper ssh -tt pi@10.1.10.150 screen -r<CR>
+nnoremap <leader>s :AsyncStop<CR>:AsyncRun sshpass -p piper ssh pi@10.1.10.202 sudo killall python<CR>
 
 " Normal mode
 imap jk <Esc>
+
+" dont show swap file message
+set shortmess+=A
 
 " Stolen from Alex Luecke
 nmap B ^
@@ -34,10 +45,6 @@ noremap <Tab> >>
 " Colors
 "colorscheme gotham
 set termguicolors     " enable true colors support
-"let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
-"colorscheme cleanroom
 
 " Utility
 nnoremap <space> i<space><Esc>
@@ -50,10 +57,6 @@ nmap <C-Enter> i<CR><Esc>
 
 " Per project vimrc
 set exrc
-
-" Filename
-set laststatus=2
-set statusline=%f%{fugitive#statusline()} "tail of the filename
 
 " Use Spaces
 "set tabstop=4 
@@ -82,10 +85,10 @@ set clipboard=unnamedplus
 " HTML
 runtime macros/matchit.vim
 
-
-
 " ---- Plug
 call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'fadein/vim-FIGlet'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-sleuth'
 Plug 'morhetz/gruvbox'
@@ -101,17 +104,30 @@ Plug 'w0rp/ale'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'skywind3000/asyncrun.vim'
-nnoremap [q <Plug>(qf_qf_previous)
-nnoremap ]q <Plug>(qf_qf_next)
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-unimpaired'
 call plug#end()
 " ----- Plug
 
+let g:ctrlp_working_path_mode = 0
+
+" Status line
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+
+"let newwidth = g:airline#extensions#default#section_truncate_width
+"let newwidth.b = 100
+"let g:airline#extensions#default#section_truncate_width = newwidth
+
+let g:airline#extensions#tabline#enabled = 1
+
+" Quick fix
 let g:asyncrun_open = 20
 let g:qf_auto_open_quickfix = 0
 let g:qf_max_height = 20
 let g:qf_auto_resize = 1
 
+let $PYTHONUNBUFFERED=1
 
 " Ack.vim
 if executable('ag')
@@ -208,8 +224,8 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$/
 map <silent> <F5> :call gruvbox#bg_toggle()<CR>
 
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+"autocmd QuickFixCmdPost [^l]* nested cwindow
+"autocmd QuickFixCmdPost    l* nested lwindow
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-a>"
@@ -261,54 +277,12 @@ let g:ale_fixers = {
 \   'python': [
 \       'yapf',
 \       'trim_whitespace',
-\       'add_blank_lines_for_python_control_statements',
-\		'isort'
+\	'isort'
 \   ],
 \}
 let g:ale_fix_on_save = 1
 
 let test#python#runner = 'pytest'
 let test#strategy = "asyncrun"
-
-" Quickfix loop around
-"command! Cnext try | cnext | catch | cfirst | catch | endtry
-"command! Cprev try | cprev | catch | clast | catch | endtry
-"command! Lnext try | lnext | catch | lfirst | catch | endtry
-"command! Lprev try | lprev | catch | llast | catch | endtry
-"cabbrev cnext Cnext
-"cabbrev cprev CPrev
-"cabbrev lnext Lnext
-"cabbrev lprev Lprev
-
-
-"function! WrapCommand(direction, prefix)
-"    "if a:direction == "up"
-"    "    try
-"    "        execute a:prefix . "previous"
-"    "    catch /^Vim\%((\a\+)\)\=:E553/
-"    "        execute a:prefix . "last"
-"    "    catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
-"    "    endtry
-"    "else
-"    "    try
-"    "        execute a:prefix . "next"
-"    "    catch /^Vim\%((\a\+)\)\=:E553/
-"    "        execute a:prefix . "first"
-"    "    catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
-"    "    endtry
-"    "endif
-"
-"    "if &foldopen =~ 'quickfix' && foldclosed(line('.')) != -1
-"    "    normal! zv
-"    "endif
-"
-"    echo "hey"
-"    normal copen
-"    normal! zz
-"    wincmd k
-"endfunction
-
-"nnoremap [q :<C-u> call WrapCommand('up', 'c')<CR>
-"nnoremap ]q :<C-u> call WrapCommand('down', 'c')<CR>
 
 set secure

@@ -1,0 +1,13 @@
+#!/bin/bash
+CURRENT=`cat /sys/class/backlight/intel_backlight/brightness`
+echo $CURRENT
+
+if [ $1 == "-" ]
+then
+	NEW=$((CURRENT - 50))
+else
+	NEW=$((CURRENT + 50))
+fi
+echo $NEW
+sudo echo "$NEW" | sudo tee /sys/class/backlight/intel_backlight/brightness
+
