@@ -1,12 +1,11 @@
 let mapleader = ","
 
 nnoremap <leader>w :w<CR>
-nnoremap <leader>Q :q<CR>
-nnoremap <leader>q :bd<CR>
+nnoremap <leader>q :q<CR>
 nnoremap <leader>e :e<CR>
 nnoremap <leader>v :e $MYVIMRC<CR>:source %<CR>
 nnoremap <leader>p ywoprint("<Esc>pi is: " .. dump(<Esc>pi))<Esc> " Lua print
-nnoremap <leader>d Oimport pdb; pdb.set_trace()<Esc>
+nnoremap <leader>d Oimport ipdb; ipdb.set_trace()<Esc>
 "LUAnnoremap <leader>d o<Esc>idbg = dofile("/home/greg/code/piper-mods/piper/dev/debugger.lua")<CR>dbg()<Esc>
 nnoremap <leader><leader> :find
 nnoremap <leader>f :Ack 
@@ -50,10 +49,7 @@ set termguicolors     " enable true colors support
 nnoremap <space> i<space><Esc>
 
 " Adding newlines
-nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
-nmap <C-Enter> i<CR><Esc>
-
 
 " Per project vimrc
 set exrc
@@ -101,13 +97,16 @@ Plug '~/.vim/plugged/omnisharp-vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-unimpaired'
+Plug 'JamshedVesuna/vim-markdown-preview'
 call plug#end()
 " ----- Plug
+
+let NERDTreeIgnore = ['\.pyc$']
 
 let g:ctrlp_working_path_mode = 0
 
@@ -121,10 +120,12 @@ let g:airline_section_y = ''
 
 let g:airline#extensions#tabline#enabled = 1
 
+let g:vim_markdown_preview_github=1
+
 " Quick fix
 let g:asyncrun_open = 20
 let g:qf_auto_open_quickfix = 0
-let g:qf_max_height = 20
+"let g:qf_max_height = 20
 let g:qf_auto_resize = 1
 
 let $PYTHONUNBUFFERED=1
@@ -133,7 +134,8 @@ let $PYTHONUNBUFFERED=1
 if executable('ag')
     let g:ackprg = 'ag --vimgrep --smart-case'
 endif
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|DS_Store|git)|(\.(swp|ico|git|svn|pyc))$'
+
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
@@ -273,11 +275,13 @@ fun! SetAppDir()
 endfun
 autocmd BufEnter *.py call SetAppDir()
 
+let g:ale_set_signs = 0
+let g:ale_linters = {
+\   'python': []
+\}
 let g:ale_fixers = {
 \   'python': [
-\       'yapf',
-\       'trim_whitespace',
-\	'isort'
+\       'trim_whitespace'
 \   ],
 \}
 let g:ale_fix_on_save = 1
