@@ -55,14 +55,14 @@ nmap <CR> o<Esc>
 set exrc
 
 " Use Spaces
-"set tabstop=4 
-"set expandtab
-"set shiftwidth=4
-"set autoindent
-"set smartindent
+set tabstop=4 
+set expandtab
+set shiftwidth=4
+set autoindent
+set smartindent
 
 " Use tabs
-set noet ci pi sts=0 sw=4 ts=4
+"set noet ci pi sts=0 sw=4 ts=4
 
 " Line numbering
 set relativenumber
@@ -76,13 +76,24 @@ set wildmenu
 set nowrap
 
 " Clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " HTML
 runtime macros/matchit.vim
 
+set listchars=tab:>-,eol:$,trail:.,extends:#
+
 " ---- Plug
 call plug#begin('~/.vim/plugged')
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'mrk21/yaml-vim'
+Plug 'hauleth/asyncdo.vim'
+"Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'vim-scripts/a.vim'
+Plug 'leafgarland/typescript-vim'
+Plug '907th/vim-auto-save'
+Plug 'ruanyl/coverage.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'fadein/vim-FIGlet'
 Plug 'romainl/vim-qf'
@@ -98,14 +109,15 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
 "Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
-Plug 'skywind3000/asyncrun.vim'
+Plug 'honza/vim-snippets'
+"Plug 'skywind3000/asyncrun.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-unimpaired'
 Plug 'JamshedVesuna/vim-markdown-preview'
 call plug#end()
 " ----- Plug
 
+autocmd QuickFixCmdPost * :copen
 let NERDTreeIgnore = ['\.pyc$']
 
 let g:ctrlp_working_path_mode = 0
@@ -132,9 +144,9 @@ let $PYTHONUNBUFFERED=1
 
 " Ack.vim
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep --smart-case'
+    let g:ackprg = 'ag --vimgrep --smart-case --ignore="*.min.js"'
 endif
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|DS_Store|git)|(\.(swp|ico|git|svn|pyc))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|DS_Store|\.git)|(\.(swp|ico|git|svn|pyc))$'
 
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
@@ -147,8 +159,11 @@ set runtimepath^=~/.vim/plugged/a.vim
 " YCM IDE subcommands
 nnoremap <leader>g :YcmCompleter GoTo<CR> 
 nnoremap <leader>r :YcmCompleter GoToReferences<CR> 
+nnoremap <leader>n :YcmCompleter RefactorRename 
+nnoremap <leader>t :YcmCompleter FixIt<CR>
 highlight YcmWarningSection guibg=#0fa000
 let g:ycm_python_binary_path = '/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 " Persistent undo
 let vimDir = '$HOME/.vim'
@@ -276,8 +291,11 @@ endfun
 autocmd BufEnter *.py call SetAppDir()
 
 let g:ale_set_signs = 0
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_delay = 1000
 let g:ale_linters = {
-\   'python': []
+\   'python': [],
+\   'javascript': ['eslint']
 \}
 let g:ale_fixers = {
 \   'python': [

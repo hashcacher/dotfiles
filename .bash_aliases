@@ -39,6 +39,15 @@ alias gstp='git stash pop'
 
 alias sshssh='ssh root@52.53.179.223'
 
+alias k='kubectl'
+alias kstart='cd ~/code/k8s-bootstrap/; ./bootstrap-minikube.sh'
+alias kclean='minikube delete; rm -rf ~/.minikube; kstart'
+alias kg='kubectl get pods'
+alias kgparse='export POD_NAME=$(kubectl get pods --namespace pn-push | grep parser | grep Running | awk '\''{ print $1 }'\'')'
+alias kd='kubectl describe'
+alias kl='kubectl logs'
+alias ke='kubectl exec -it'
+
 function imagenet {
     python /usr/local/lib/python2.7/dist-packages/tensorflow/models/image/imagenet/classify_image.py --image_file=$1
 }
