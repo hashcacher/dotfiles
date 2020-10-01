@@ -1,0 +1,188 @@
+{
+    "workbench.colorTheme": "Gruvbox Light (Hard)",
+    "editor.lineNumbers": "relative", 
+    "omnisharp.useGlobalMono": "always",
+    "vim.leader": ",",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.debug.loggingLevelForConsole": "debug",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "d", "o"
+            ],
+            "commands": [
+                "git.revertSelectedRanges"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "shift+tab"
+            ],
+            "after": [
+                "<",
+                "<"
+            ],
+        },
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "c"
+            ],
+            "commands": [
+                "editor.action.diffReview.next"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "c"
+            ],
+            "commands": [
+                "editor.action.diffReview.previous"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "g"
+            ],
+            "commands": [
+                "editor.action.revealDefinition"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "q"
+            ],
+            "commands": [
+                "editor.action.marker.nextInFiles"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "space"
+            ],
+            "commands": [
+                "editor.action.insertLineAfter"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "space"
+            ],
+            "commands": [
+                "editor.action.insertLineBefore"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "shift+b"
+            ],
+            "commands": [
+                "workbench.action.firstEditorInGroup"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "shift+b"
+            ],
+            "commands": [
+                "workbench.action.lastEditorInGroup"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "b"
+            ],
+            "commands": [
+                "extension.vim_ctrl+pagedown"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "b"
+            ],
+            "commands": [
+                "extension.vim_ctrl+pageup"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "q"
+            ],
+            "commands": [
+                "editor.action.marker.prevInFiles"
+            ]
+        },
+    ],
+    "vim.operatorPendingModeKeyBindings": [
+        {
+            "before": [ "L" ],
+            "after": [ "$" ]
+        },
+        {
+            "before": [ "H" ],
+            "after": [ "^" ]
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-a>": false
+    },
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "/home/guterman/.vimrc",
+    "zenMode.hideLineNumbers": false,
+    "csharp.referencesCodeLens.enabled": false,
+    "gitlens.views.compare.files.compact": false,
+    "terminal.integrated.scrollback": 100000,
+}
