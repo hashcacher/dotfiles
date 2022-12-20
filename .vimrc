@@ -8,7 +8,10 @@ nnoremap <leader>p ywoprint("<Esc>pi is: " .. dump(<Esc>pi))<Esc> " Lua print
 nnoremap <leader>d Oimport ipdb; ipdb.set_trace()<Esc>
 "LUAnnoremap <leader>d o<Esc>idbg = dofile("/home/greg/code/piper-mods/piper/dev/debugger.lua")<CR>dbg()<Esc>
 nnoremap <leader><leader> :find
-nnoremap <leader>f :Ack 
+nnoremap <leader>f :Rg 
+nnoremap <leader>bd :bd<CR>
+nnoremap <C-p> :FZF<CR>
+nnoremap gh <plug>(YCMHover)
 
 " vim-test
 "nnoremap <leader>b :TestLast<CR>
@@ -20,10 +23,7 @@ nnoremap <leader>f :Ack
 "nnoremap <leader>n :AsyncRun -post :AsyncRun "sshpass -p piper ssh pi@10.1.10.202 sudo killall python<CR>" sshpass -p piper rsync -avz --exclude videos --exclude .git --exclude '*.dat' ~/code/piper/ pi@10.1.10.202:~/piper/<CR>
 nnoremap <leader>n :AsyncRun sshpass -p piper rsync -avz --exclude .git --exclude '*.dat' ~/code/piperbak/ pi@10.1.10.202:~/piper/<CR>
 
-nnoremap <leader>b :AsyncRun sshpass -p piper ssh -tt pi@10.1.10.202 'export TERM=xterm
-\ sudo killall python;
-\ tmux send-keys -t0 "sudo python start.py" Enter;
-\ tmux a -t0'<CR>
+nnoremap <leader>b :AsyncRun -rows=3 docker-compose restart ai<cr>
 
 "nnoremap <leader>b :AsyncRun sshpass -p piper ssh -tt pi@10.1.10.150 screen -r<CR>
 nnoremap <leader>s :AsyncStop<CR>:AsyncRun sshpass -p piper ssh pi@10.1.10.202 sudo killall python<CR>
@@ -99,7 +99,7 @@ Plug 'fadein/vim-FIGlet'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-sleuth'
 Plug 'morhetz/gruvbox'
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
@@ -107,13 +107,16 @@ Plug 'Valloric/YouCompleteMe'
 Plug '~/.vim/plugged/omnisharp-vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'skywind3000/asyncrun.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-unimpaired'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 " ----- Plug
 
@@ -135,7 +138,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:vim_markdown_preview_github=1
 
 " Quick fix
-let g:asyncrun_open = 20
+let g:asyncrun_open = 5
 let g:qf_auto_open_quickfix = 0
 "let g:qf_max_height = 20
 let g:qf_auto_resize = 1
@@ -162,7 +165,7 @@ nnoremap <leader>r :YcmCompleter GoToReferences<CR>
 nnoremap <leader>n :YcmCompleter RefactorRename 
 nnoremap <leader>t :YcmCompleter FixIt<CR>
 highlight YcmWarningSection guibg=#0fa000
-let g:ycm_python_binary_path = '/usr/bin/python'
+"let g:ycm_python_binary_path = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 " Persistent undo
@@ -290,11 +293,10 @@ fun! SetAppDir()
 endfun
 autocmd BufEnter *.py call SetAppDir()
 
-let g:ale_set_signs = 0
+let g:ale_set_signs = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_delay = 1000
 let g:ale_linters = {
-\   'python': [],
 \   'javascript': ['eslint']
 \}
 let g:ale_fixers = {
@@ -306,5 +308,16 @@ let g:ale_fix_on_save = 1
 
 let test#python#runner = 'pytest'
 let test#strategy = "asyncrun"
+
+" Re-map FZF's Rg function to use ctrl-a/d instead of alt-a/d (no alt on mac)
+if has('macunix')
+  command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   "rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>),
+  \   1,
+  \   {'options': fzf#vim#with_preview()["options"] + ['--bind', 'ctrl-a:select-all,ctrl-d:deselect-all']},
+  \   <bang>0
+  \ )
+endif
 
 set secure

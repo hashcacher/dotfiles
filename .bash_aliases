@@ -11,13 +11,15 @@ alias cdtd='cd ~/code/td/Assets'
 alias cdcg='cd ~/code/ChessGo_n_Ads/ChessGo/Assets'
 alias cdcs='cd ~/code/ChessGo_n_Ads/ChessGo\ Server/Card\ Game\ Server'
 alias cdrn='cd ~/code/native-starter-kit'
-alias cd3d='cd ~/code/3dg'
+alias cd3d='cd ~/code/3dgifmaker'
+alias cdplant='cd ~/code/plantchess'
 
 alias cdworlds='cd ~/code/minetest/worlds/marsWorld-Latest'
 alias cdmods='cd ~/code/piper-mods'
 alias trig="vim ~/code/minetest/worlds/marsWorld-Latest/triggers.json"
 
 alias gitgraph='git log --graph --all --decorate'
+alias g='git'
 alias ga='git add'
 alias gb='git branch'
 alias gc='git commit'
@@ -36,6 +38,16 @@ alias gs='git status'
 alias gst='git stash'
 alias gstl='git stash list'
 alias gstp='git stash pop'
+
+alias dps='docker ps'
+alias di='docker images'
+alias dk='docker kill'
+alias ds='docker stop'
+alias dl='docker log'
+alias dcud='docker-compose up -d'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'
+alias dcl='docker-compose down'
 
 alias sshssh='ssh root@52.53.179.223'
 
