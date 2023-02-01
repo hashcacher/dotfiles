@@ -1,3 +1,6 @@
+set encoding=utf-8
+set signcolumn=yes
+
 let mapleader = ","
 
 nnoremap <leader>w :w<CR>
@@ -9,9 +12,52 @@ nnoremap <leader>d Oimport ipdb; ipdb.set_trace()<Esc>
 "LUAnnoremap <leader>d o<Esc>idbg = dofile("/home/greg/code/piper-mods/piper/dev/debugger.lua")<CR>dbg()<Esc>
 nnoremap <leader><leader> :find
 nnoremap <leader>f :Rg 
-nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bd :Bdelete<CR>
 nnoremap <C-p> :FZF<CR>
-nnoremap gh <plug>(YCMHover)
+
+" -- coc.vim
+nnoremap <leader>g <Plug>(coc-definition)
+nnoremap <leader>r <Plug>(coc-references)
+nnoremap <leader>n <Plug>(coc-rename)
+nnoremap <leader>t <Plug>(coc-fix-current)
+highlight YcmWarningSection guibg=#0fa000
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nnoremap gh :call ShowDocumentation()<CR>
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+" -- coc.vim
 
 " vim-test
 "nnoremap <leader>b :TestLast<CR>
@@ -85,6 +131,9 @@ set listchars=tab:>-,eol:$,trail:.,extends:#
 
 " ---- Plug
 call plug#begin('~/.vim/plugged')
+Plug 'moll/vim-bbye'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'itspriddle/vim-shellcheck'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'mrk21/yaml-vim'
 Plug 'hauleth/asyncdo.vim'
@@ -103,7 +152,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug '~/.vim/plugged/omnisharp-vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
@@ -160,11 +209,6 @@ cnoreabbrev AG Ack
 set runtimepath^=~/.vim/plugged/a.vim
 
 " YCM IDE subcommands
-nnoremap <leader>g :YcmCompleter GoTo<CR> 
-nnoremap <leader>r :YcmCompleter GoToReferences<CR> 
-nnoremap <leader>n :YcmCompleter RefactorRename 
-nnoremap <leader>t :YcmCompleter FixIt<CR>
-highlight YcmWarningSection guibg=#0fa000
 "let g:ycm_python_binary_path = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
@@ -251,12 +295,6 @@ map <silent> <F5> :call gruvbox#bg_toggle()<CR>
 let g:UltiSnipsExpandTrigger="<c-a>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
 
 let g:last_relative_dir = ''
 nnoremap \1 :call RelatedFile ("models.py")<CR>
